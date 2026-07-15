@@ -112,12 +112,12 @@ ${cleanHtml}
 User Intent: "${prompt}"`;
 
   try {
-    console.log(`[Cerebras AI] Sending request to Cerebras API for model 'gemma-4-31b'...`);
+    console.log(`[Cerebras AI] Sending request to Cerebras API for model 'gpt-oss-120b'...`);
     const startTime = Date.now();
     
-    // 3. Query the Cerebras API using the available 'gemma-4-31b' model
+    // 3. Query the Cerebras API using the available 'gpt-oss-120b' model
     const response = await cerebras.chat.completions.create({
-      model: 'gemma-4-31b',
+      model: 'gpt-oss-120b',
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt }

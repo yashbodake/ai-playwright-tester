@@ -21,8 +21,9 @@ test.describe('AI-Resilient Football Analytics Dashboard Test Suite (Cerebras Ll
     console.log('[Test] Sending AI request to click the match card with the highest home win probability...');
     await ai('Click on the match card with the highest home win probability', page);
 
-    // 5. Allow any transition/animations to complete
-    await page.waitForTimeout(1000);
+    // 5. Allow any transition/animations to complete AND wait 5s to avoid Cerebras API throttling on consecutive requests
+    console.log('[Test] Waiting 5 seconds to prevent Cerebras API throttling on consecutive requests...');
+    await page.waitForTimeout(5000);
 
     // 6. Scenario: Validating Tactical Data
     // Use plain English to ask if the home team is using a 4-3-3 formation
