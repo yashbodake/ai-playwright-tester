@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI-driven Football Match Predictions and Tactical Analysis Dashboard containing probabilistic forecasting and team formations.">
+  <title>Apex Football Analytics - AI Predictions Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+  <header>
+    <div class="logo-container" id="brand-logo">
+      <div class="logo-icon">A</div>
+      <div class="logo-text">
+        <h1>APEX ANALYTICS</h1>
+        <p>AI MATCH PREDICTION ENGINE</p>
+      </div>
+    </div>
+    <div class="live-indicator" id="live-status">
+      <div class="pulse-dot"></div>
+      <span>LIVE UPDATE</span>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="section-title" id="upcoming-title">Upcoming European Predictions</h2>
+    <div class="matches-grid" id="matches-grid">
+      <!-- Loaded dynamically via app.js -->
+    </div>
+  </main>
+
+  <!-- Detailed Match Analytics Modal (Overlay) -->
+  <div class="detail-overlay" id="detail-overlay">
+    <div class="detail-modal" id="detail-modal">
+      <button class="close-btn" id="close-btn" aria-label="Close details">&times;</button>
+      
+      <div class="detail-header">
+        <div class="detail-league" id="detail-league">Bundesliga</div>
+        <div class="detail-teams">
+          <div class="detail-team">
+            <div class="team-logo" id="detail-home-logo">FCB</div>
+            <span class="team-name" id="detail-home-name">Bayern Munich</span>
+          </div>
+          <span class="vs-divider">VS</span>
+          <div class="detail-team">
+            <div class="team-logo" id="detail-away-logo">BVB</div>
+            <span class="team-name" id="detail-away-name">Borussia Dortmund</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tactical-stats" id="tactical-stats">
+        <h3 class="tactical-title" id="tactical-title">Expected Tactical Formations</h3>
+        <div class="formation-display">
+          <div class="formation-item">
+            <span class="formation-label">Home Formation</span>
+            <span class="formation-value" id="detail-home-formation">4-3-3</span>
+          </div>
+          <div class="formation-item" style="text-align: right;">
+            <span class="formation-label">Away Formation</span>
+            <span class="formation-value" id="detail-away-formation">4-2-3-1</span>
+          </div>
+        </div>
+
+        <div class="tactical-metric-row">
+          <div class="metric-label-row">
+            <span class="text-muted">Expected Match Intensity</span>
+            <strong id="detail-intensity-value">92%</strong>
+          </div>
+          <div class="metric-bar-outer">
+            <div class="metric-bar-fill" id="detail-intensity-bar" style="width: 92%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
