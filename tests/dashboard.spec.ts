@@ -1,15 +1,10 @@
-import { test as base, expect } from '@playwright/test';
-import { aiFixture, type AiFixture } from '@zerostep/playwright';
+import { test, expect } from '@playwright/test';
 import { applyDomMutator } from './utils/dom-mutator';
+import { ai } from './utils/cerebras-ai';
 import path from 'path';
 
-// Extend the base test to include the ZeroStep 'ai' fixture
-const test = base.extend<AiFixture>({
-  ...aiFixture(base),
-});
-
-test.describe('AI-Resilient Football Analytics Dashboard Test Suite', () => {
-  test('should navigate, identify highest probability prediction card, and verify tactical formation under heavy DOM mutation', async ({ page, ai }) => {
+test.describe('AI-Resilient Football Analytics Dashboard Test Suite (Cerebras Llama 3.1)', () => {
+  test('should navigate, identify highest probability prediction card, and verify tactical formation under heavy DOM mutation', async ({ page }) => {
     // 1. Inject the self-healing DOM mutator prior to page initialization / loading
     await applyDomMutator(page);
 
@@ -24,7 +19,7 @@ test.describe('AI-Resilient Football Analytics Dashboard Test Suite', () => {
     // Use plain English intent to click the card.
     // The highest probability is Bayern Munich (78% vs 45% and 62% for others).
     console.log('[Test] Sending AI request to click the match card with the highest home win probability...');
-    await ai('Click on the match card with the highest home win probability');
+    await ai('Click on the match card with the highest home win probability', page);
 
     // 5. Allow any transition/animations to complete
     await page.waitForTimeout(1000);
@@ -32,7 +27,7 @@ test.describe('AI-Resilient Football Analytics Dashboard Test Suite', () => {
     // 6. Scenario: Validating Tactical Data
     // Use plain English to ask if the home team is using a 4-3-3 formation
     console.log('[Test] Sending AI request to verify that the home team uses a 4-3-3 formation...');
-    const isFormation433 = await ai('Is the home team using a 4-3-3 formation?');
+    const isFormation433 = await ai('Is the home team using a 4-3-3 formation?', page);
     
     // We expect the AI query to confirm that the formation is 4-3-3
     expect(isFormation433).toBeTruthy();
