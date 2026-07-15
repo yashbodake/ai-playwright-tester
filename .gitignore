@@ -17,3 +17,4 @@ tests/proof-screenshot.png
 # Sensitive config files
 zerostep.config.json
 scratch/
+.env
