@@ -6,7 +6,7 @@ This document defines the technical foundation and environment configuration for
 ## 2. System Requirements
 * **Runtime**: Node.js v18 or higher
 * **Core Framework**: Playwright (latest)
-* **AI Engine**: `@zerostep/playwright`
+* **AI Engine**: OpenAI-compatible client (`openai` SDK) — works with OpenAI, Ollama, or any compatible API
 * **Target Application**: Local mock HTML files or a live football analytics dashboard.
 
 ## 3. Directory Structure
@@ -19,10 +19,10 @@ ai-playwright-tester/
 ├── src/
 │   └── app/               # Mock HTML/JS dashboard simulating live football data
 ├── tests/
-│   ├── utils/             # Helper scripts (like the DOM mutator)
+│   ├── utils/             # Helper scripts (DOM mutator, openai-ai)
 │   └── dashboard.spec.ts  # The actual AI tests
 ├── docs/
 │   └── specs/             # SDD Markdown files live here
 ├── package.json
-└── zerostep.config.json
+└── .env.example           # OPENAI_API_KEY / OPENAI_BASE_URL / OPENAI_MODEL
 ```

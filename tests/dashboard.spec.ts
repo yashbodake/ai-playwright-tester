@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 import { applyDomMutator } from './utils/dom-mutator';
-import { ai } from './utils/cerebras-ai';
+import { ai } from './utils/openai-ai';
 import path from 'path';
 
-test.describe('AI-Resilient Football Analytics Dashboard Test Suite (Cerebras Llama 3.1)', () => {
+test.describe('AI-Resilient Football Analytics Dashboard Test Suite (OpenAI-compatible)', () => {
   test('should navigate, identify highest probability prediction card, and verify tactical formation under heavy DOM mutation', async ({ page }) => {
     // 1. Inject the self-healing DOM mutator prior to page initialization / loading
     await applyDomMutator(page);
@@ -21,15 +21,15 @@ test.describe('AI-Resilient Football Analytics Dashboard Test Suite (Cerebras Ll
     console.log('[Test] Sending AI request to click the match card with the highest home win probability...');
     await ai('Click on the match card with the highest home win probability', page);
 
-    // 5. Allow any transition/animations to complete AND wait 5s to avoid Cerebras API throttling on consecutive requests
-    console.log('[Test] Waiting 5 seconds to prevent Cerebras API throttling on consecutive requests...');
+    // 5. Allow transitions/animations to complete and briefly pause between LLM calls
+    console.log('[Test] Waiting 5 seconds between consecutive AI requests...');
     await page.waitForTimeout(5000);
 
     // 6. Scenario: Validating Tactical Data
     // Use plain English to ask if the home team is using a 4-3-3 formation
     console.log('[Test] Sending AI request to verify that the home team uses a 4-3-3 formation...');
     const isFormation433 = await ai('Is the home team using a 4-3-3 formation?', page);
-    
+
     // We expect the AI query to confirm that the formation is 4-3-3
     expect(isFormation433).toBeTruthy();
 

@@ -30,7 +30,9 @@ jobs:
       run: npx playwright test
       working-directory: ai-playwright-tester
       env:
-        ZEROSTEP_TOKEN: ${{ secrets.ZEROSTEP_TOKEN }}
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+        OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
 
     - uses: actions/upload-artifact@v4
       if: always()
